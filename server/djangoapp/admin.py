@@ -46,5 +46,3 @@ class CarMakeAdmin(admin.ModelAdmin):
 # Register models here
 '#admin.site.register(CarMake)'
 '#admin.site.register(CarModel)'
-
-\\n
