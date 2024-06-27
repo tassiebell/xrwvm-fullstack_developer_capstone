@@ -7,13 +7,18 @@ from .models import CarMake, CarModel
 # CarModelInline class
 class CarModelInline(admin.TabularInline):
     model = CarModel
-    extra = 1  # Number of empty forms to display for adding new CarModel instances
+    #Number of empty forms to display for adding new CarModel instances
+    extra = 1  
+
 # CarModelAdmin class
+
+
 @admin.register(CarModel)
 class CarModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'car_make', 'type', 'year')
     list_filter = ('car_make', 'type', 'year')
-    search_fields = ('name', 'car_make__name')  # Allows searching by car make name
+    # Allows searching by car make name
+    search_fields = ('name', 'car_make__name')  
     ordering = ('car_make', 'name')
 
     # Customize the form fields displayed when adding/editing a CarModel
@@ -30,11 +35,16 @@ class CarModelAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         # Optimize queryset to select related CarMake for performance
         return super().get_queryset(request).select_related('car_make')
+
 # CarMakeAdmin class with CarModelInline
+
+
 @admin.register(CarMake)
 class CarMakeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     inlines = [CarModelInline]
 # Register models here
-#admin.site.register(CarMake)
-#admin.site.register(CarModel)
+'#admin.site.register(CarMake)'
+'#admin.site.register(CarModel)'
+
+\\n
