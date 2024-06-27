@@ -4,12 +4,14 @@ from .models import CarMake, CarModel
 # Register your models here.
 
 # CarModelInline class
+
 class CarModelInline(admin.TabularInline):
     model = CarModel
     # Number of empty forms to display for adding new CarModel instances
     extra = 1
 
 # CarModelAdmin class
+
 @admin.register(CarModel)
 class CarModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'car_make', 'type', 'year')
@@ -34,6 +36,7 @@ class CarModelAdmin(admin.ModelAdmin):
         return super().get_queryset(request).select_related('car_make')
 
 # CarMakeAdmin class with CarModelInline
+
 @admin.register(CarMake)
 class CarMakeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
