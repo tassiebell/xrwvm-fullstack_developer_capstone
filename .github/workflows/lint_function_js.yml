@@ -1,0 +1,29 @@
+name: Lint Function JS
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  lint_function_js:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install JSHint
+        run: npm install jshint --global
+
+      - name: Run Linter
+        run: |
+          find ./server/database -name "*.js" -exec jshint {} +
+          echo "Linted all JavaScript files successfully"
