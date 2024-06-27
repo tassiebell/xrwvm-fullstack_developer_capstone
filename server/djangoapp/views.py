@@ -1,12 +1,12 @@
 # Uncomment the required imports before adding the code
 
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+'#from django.http import HttpResponseRedirect, HttpResponse'
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
+'#from django.shortcuts import get_object_or_404, render, redirect'
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
+'#from django.contrib import messages'
+'#from datetime import datetime'
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -22,18 +22,23 @@ logger = logging.getLogger(__name__)
 
 
 # Create your views here.
-# Add a method to get the list of cars 
+# Add a method to get the list of cars
+
+
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if (count == 0):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
-    return JsonResponse({"CarModels":cars})
+        cars.append({"CarModel": car_model.name,
+                     "CarMake": car_model.car_make.name})
+    return JsonResponse({"CarModels": cars})
 # Create a `login_request` view to handle sign in request
+
+
 @csrf_exempt
 def login_user(request):
     # Get username and password from request.POST dictionary
