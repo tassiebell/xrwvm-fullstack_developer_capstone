@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments #, post_review
+'#from .restapis import get_request, analyze_review_sentiments #, post_review'
 '#from django.shortcuts import render'
 '#from django.http import HttpResponseRedirect, HttpResponse'
 '#from django.shortcuts import get_object_or_404, render, redirect'
