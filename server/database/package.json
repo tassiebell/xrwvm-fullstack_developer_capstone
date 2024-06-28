@@ -18,7 +18,6 @@
   "jshintConfig": {
     "esversion": 8,
     "node": true
-    // Add other JSHint rules here
   }
 }
 
