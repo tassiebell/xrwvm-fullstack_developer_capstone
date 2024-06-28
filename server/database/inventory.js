@@ -1,8 +1,3 @@
-'#const { Int32 } = require('mongodb');'
-'#const mongoose = require('mongoose');'
-'#const Schema = mongoose.Schema;'
-'#const cars = new Schema({...})'
-'#In ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz)'
 // Import necessary modules
 const mongoose = require('mongoose');
 
