@@ -23,7 +23,7 @@
     "lint": "jshint ."
   },
   "jshintConfig": {
-    "esversion": 6,
+    "esversion": 8,
     "node": true
     // Add other JSHint rules here
   },
