@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 // Import necessary modules
 const mongoose = require('mongoose');
-/* jshint esversion: 6 */
+
 // Define the schema for cars
 const carSchema = new mongoose.Schema({
   dealer_id: {
