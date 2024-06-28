@@ -15,3 +15,17 @@
     "mongoose": "^8.0.1"
   }
 }
+
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "jshint ."
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "node": true
+    // Add other JSHint rules here
+  },
+  // Other package.json properties...
+}
