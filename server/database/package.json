@@ -17,7 +17,7 @@
 }
 
 {
-  "name": "inventory",
+  "name": "project_database",
   "version": "1.0.0",
   "scripts": {
     "lint": "jshint ."
