@@ -1,39 +1,26 @@
-from django.urls import path
+"""djangoproj URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
+from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
-from . import views
 
-app_name = 'djangoapp'
 urlpatterns = [
-    # # path for registration
-    path(route='register', view=views.registration, name='register'),
-    # path for login/logout
-    path(route='login', view=views.login_user, name='login'),
-    path('logout/', views.logout_request, name='logout'),
-    # path for getting the list of cars
-    path(route='get_cars', view=views.get_cars, name='getcars'),
-    # path for getting dealerships
-    path(
-        route='get_dealers/',
-        view=views.get_dealerships,
-        name='get_dealers'),
-    path(
-        route='get_dealers/<str:state>',
-        view=views.get_dealerships,
-        name='get_dealers_by_state'),
-    # path for getting dealership details
-    path(
-        route='dealer/<int:dealer_id>',
-        view=views.get_dealer_details,
-        name='dealer_details'),
-    # path for dealer reviews view
-    path(
-        route='reviews/dealer/<int:dealer_id>',
-        view=views.get_dealer_reviews,
-        name='dealer_details'),
-    # path for add a review view
-    path(
-        route='add_review',
-        view=views.add_review,
-        name='add_review'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('admin/', admin.site.urls),
+    path('djangoapp/', include('djangoapp.urls')),
+    path('', TemplateView.as_view(template_name="Home.html")),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
