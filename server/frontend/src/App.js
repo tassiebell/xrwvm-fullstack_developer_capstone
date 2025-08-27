@@ -1,22 +1,18 @@
-import React from "react";
-import LoginPanel from "./components/Login/Login"; // Importing the Login component
-import Register from "./components/Register/Register"; // Importing the Register components
-import Dealers from './components/Dealers/Dealers';
-import Dealer from './components/Dealers/Dealer';
-import PostReview from "./components/Dealers/PostReview";
-import { Routes, Route } from "react-router-dom";
+# Uncomment the imports before you add the code
+# from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+# from . import views
 
-function App() {
-  return (
-    <Routes>
-        {/* Route for the Login page */}
-        <Route path="/login" element={<LoginPanel />} />
-        {/* Route for the Register page */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/dealers" element={<Dealers/>} />
-        <Route path="/dealer/:id" element={<Dealer/>} />
-        <Route path="/postreview/:id" element={<PostReview/>} />
-    </Routes>
-  );
-}
-export default App;
+app_name = 'djangoapp'
+urlpatterns = [
+    # # path for registration
+
+    # path for login
+    # path(route='login', view=views.login_user, name='login'),
+
+    # path for dealer reviews view
+
+    # path for add a review view
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
