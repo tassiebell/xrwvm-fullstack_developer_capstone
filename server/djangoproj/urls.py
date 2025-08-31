@@ -29,7 +29,8 @@ urlpatterns = [
     path('register/', TemplateView.as_view(template_name="index.html")),
     path('dealers/', TemplateView.as_view(template_name="index.html")),
     
-    # fixing error (E501 line too long (xxx > 79 characters)) in github actions
+    # fixing error (E501 line too long 
+    (xxx > 79 characters)) in github actions
     
     path('dealer/<int:dealer_id>', 
          TemplateView.as_view(template_name="index.html")),
