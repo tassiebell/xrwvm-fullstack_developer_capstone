@@ -1,7 +1,4 @@
-/*jshint esversion: 8 */
-
-
-
+/* jshint esversion: 8 */
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -9,7 +6,7 @@ const  cors = require('cors');
 const app = express();
 const port = 3030;
 
-app.use(cors())
+app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
 
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
@@ -24,10 +21,10 @@ const Dealerships = require('./dealership');
 
 try {
   Reviews.deleteMany({}).then(()=>{
-    Reviews.insertMany(reviews_data['reviews']);
+    Reviews.insertMany(reviews_data.reviews);
   });
   Dealerships.deleteMany({}).then(()=>{
-    Dealerships.insertMany(dealerships_data['dealerships']);
+    Dealerships.insertMany(dealerships_data.dealerships);
   });
   
 } catch (error) {
@@ -62,51 +59,75 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
 
 // Express route to fetch all dealerships
 app.get('/fetchDealers', async (req, res) => {
-  try {
-    const documents = await Dealerships.find();
-    res.json(documents);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching documents' });
-  }
+    //Write your code here
+    try {
+        const allDealerships = await Dealerships.find();
+        res.json(allDealerships);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching dealerships' });
+    }
 });
 
 // Express route to fetch Dealers by a particular state
 app.get('/fetchDealers/:state', async (req, res) => {
+    //Write your code here
+    const state = req.params.state;
     try {
-        const documents = await Dealerships.find({state: req.params.state});
-        res.json(documents);
-      } catch (error) {
-        res.status(500).json({ error: 'Error fetching documents' });
-      }
+        const dealershipsInState = await Dealerships.find({ state });
+        res.json(dealershipsInState);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching dealerships by state' });
+    }
 });
 
 // Express route to fetch dealer by a particular id
 app.get('/fetchDealer/:id', async (req, res) => {
-    try {
-        const documents = await Dealerships.find({id: req.params.id});
-        res.json(documents);
-      } catch (error) {
-        res.status(500).json({ error: 'Error fetching documents' });
-      }
+    //Write your code here
+    const dealerId = req.params.id;
+  try {
+    const dealership_info = await Dealerships.find({ id: dealerId });
+    if (!dealership_info) {
+      res.status(404).json({ error: 'Dealer not found' });
+    } else {
+      res.json(dealership_info);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching dealership by ID' });
+  }
 });
 
+//Or I can use to find _id xxxxxxxxxxxxx
+// app.get('/fetchDealer/:id', async (req, res) => {
+//     const dealerId = req.params.id;
+//     try {
+//       const dealership = await Dealerships.findById(dealerId);
+//       if (!dealership) {
+//         res.status(404).json({ error: 'Dealer not found' });
+//       } else {
+//         res.json(dealership);
+//       }
+//     } catch (error) {
+//       res.status(500).json({ error: 'Error fetching dealership by ID' });
+//     }
+//   });
+  
 
 //Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   data = JSON.parse(req.body);
   const documents = await Reviews.find().sort( { id: -1 } );
-  let new_id = documents[0]['id']+1;
+  let new_id = documents[0].id+1;
 
   const review = new Reviews({
 		"id": new_id,
-		"name": data['name'],
-		"dealership": data['dealership'],
-		"review": data['review'],
-		"purchase": data['purchase'],
-		"purchase_date": data['purchase_date'],
-		"car_make": data['car_make'],
-		"car_model": data['car_model'],
-		"car_year": data['car_year'],
+		"name": data.name,
+		"dealership": data.dealership,
+		"review": data.review,
+		"purchase": data.purchase,
+		"purchase_date": data.purchase_date,
+		"car_make": data.car_make,
+		"car_model": data.car_model,
+		"car_year": data.car_year,
 	});
 
   try {
@@ -122,4 +143,3 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
