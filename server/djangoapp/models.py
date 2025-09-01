@@ -15,14 +15,14 @@ class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE) 
     name = models.CharField(max_length=100)
     CAR_TYPES = [
-        ('SEDAN', 'Sedan'), 
-        ('SUV', 'SUV'), 
-        ('WAGON', 'Wagon'), 
-        ('HATCHBACK', 'Hatchback'), 
-        ('COUPE', 'Coupe'), 
-        ('MINIVAN', 'Minivan'), 
-        ('CONVERTIBLE', 'Convertible'), 
-        ('PICKUP', 'Pickup'), 
+        ('SEDAN', 'Sedan'),
+        ('SUV', 'SUV'),
+        ('WAGON', 'Wagon'),
+        ('HATCHBACK', 'Hatchback'),
+        ('COUPE', 'Coupe'),
+        ('MINIVAN', 'Minivan'),
+        ('CONVERTIBLE', 'Convertible'),
+        ('PICKUP', 'Pickup'),
     ]
     type = models.CharField(max_length=30,
                             choices=CAR_TYPES, default='SUV')
