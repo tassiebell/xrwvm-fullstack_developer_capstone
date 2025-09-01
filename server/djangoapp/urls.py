@@ -34,7 +34,7 @@ urlpatterns = [
     path(route='add_review',
          view=views.add_review,
          name='add_review'
-        ),
+    ),
     path(
         route='get_dealers/<str:state>',
         view=views.get_dealerships,
@@ -56,7 +56,3 @@ urlpatterns = [
         name='add_review'
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-
-
