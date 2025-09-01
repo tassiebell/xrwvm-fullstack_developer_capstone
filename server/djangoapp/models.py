@@ -13,29 +13,29 @@ class CarMake(models.Model):
     # Other fields as needed
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return self.name  
 
 class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE) 
     name = models.CharField(max_length=100)
     CAR_TYPES = [
-        ('SEDAN', 'Sedan'),
-        ('SUV', 'SUV'),
-        ('WAGON', 'Wagon'),
-        ('HATCHBACK','Hatchback'),
-        ('COUPE', 'Coupe'),
-        ('MINIVAN', 'Minivan'),
-        ('CONVERTIBLE', 'Convertible'),
-        ('PICKUP', 'Pickup'),
-        # Add more choices as required
+        ('SEDAN', 'Sedan'), 
+        ('SUV', 'SUV'), 
+        ('WAGON', 'Wagon'), 
+        ('HATCHBACK', 'Hatchback'), 
+        ('COUPE', 'Coupe'), 
+        ('MINIVAN', 'Minivan'), 
+        ('CONVERTIBLE', 'Convertible'), 
+        ('PICKUP', 'Pickup'), 
     ]
     type = models.CharField(max_length=11, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2023,
+    year = models.IntegerField(
+        default=2023,
         validators=[
             MaxValueValidator(2023),
-            MinValueValidator(2015)
-        ])
-    # Other fields as needed
-
+            MinValueValidator(2015),
+        ],
+)
+    
 def __str__(self):
     return self.name  
