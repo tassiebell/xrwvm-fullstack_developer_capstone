@@ -105,7 +105,6 @@ def get_dealer_reviews(request, dealer_id):
         )
     print(sentiment_response)
     review_detail['sentiment'] = sentiment_response['sentiment']
-            review_detail['sentiment'] = sentiment_response['sentiment']
         return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
