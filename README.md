@@ -13,7 +13,7 @@ python3 -m pip install -U -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
 python manage.py createsuperuser
-# Alternatively register after deploymnent, new users are recordet to SQl
+# Alternatively register after deploymnent, new users are recordet to SQL
 # Cleaning
 deleting the db.sqlite3 file from the server directory, and also delete the __pycache__ folder and __init__.py file (if present) from the djangoapp directory. 
 python3 manage.py makemigrations
